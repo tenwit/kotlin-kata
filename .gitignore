@@ -1,7 +1,10 @@
+out
 .gradle
 wiki
 .gitmodules
 *.iml
+*.iws
+*.ipr
 *.jar
 !gradle-wrapper.jar
 /local.properties
