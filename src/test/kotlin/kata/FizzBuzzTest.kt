@@ -14,15 +14,27 @@ class FizzBuzzTest {
 
     @Test
     fun everyThirdResultContainsFizz() {
-        val everyThird = FizzBuzz(100).elements.filterIndexed { i, s -> if ((1 + i) % 3 == 0) true else false }
+        val everyThird = FizzBuzz(100).elements.filterIndexed { i, s -> (1 + i) % 3 == 0 }
         assertThat(everyThird).isNotEmpty()
         everyThird.forEach { third -> assertThat(third).contains("Fizz") }
     }
 
     @Test
     fun everyFifthResultContainsBuzz() {
-        val everyFifth = FizzBuzz(100).elements.filterIndexed { i, s -> if ((1 + i) % 5 == 0) true else false }
+        val everyFifth = FizzBuzz(100).elements.filterIndexed { i, s -> (1 + i) % 5 == 0 }
         assertThat(everyFifth).isNotEmpty()
         everyFifth.forEach { fifth -> assertThat(fifth).contains("Buzz") }
+    }
+
+    @Test
+    fun everyFifteenthResultIsFizzBuzz() {
+        val everyFifteenth = FizzBuzz(100).elements.filterIndexed { i, s -> (1 + i) % 15 == 0 }
+        assertThat(everyFifteenth).isNotEmpty()
+        everyFifteenth.forEach { fifteenth -> assertThat(fifteenth).isEqualTo("FizzBuzz") }
+    }
+
+    @Test
+    fun ifItsNotFizzOrBuzzOrFizzBuzzItsItsOwnIndex() {
+        FizzBuzz(100).elements.forEachIndexed { i, el -> if (!el.contains('z')) assertThat(el).isEqualTo((i + 1).toString()) }
     }
 }
