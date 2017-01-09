@@ -1,0 +1,14 @@
+.gradle
+wiki
+.gitmodules
+*.iml
+*.jar
+!gradle-wrapper.jar
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+/classes
+/gradle.properties
+
