@@ -60,19 +60,17 @@ class OsheroveTest {
     }
 
     @TestFactory
-    fun cannotAddNegatives() : Collection<DynamicTest> {
-        return listOf(
-                ResultMap("-1", 1),
-                ResultMap("-11\n-1", 2),
-                ResultMap("-41\n1,-65,", 2),
-                ResultMap("1,1\n3,-4\n", 1),
-                ResultMap("-1\n-141\n2\n-98\n33\n,,\n,\n\n", 3)
-        ).map {
-            DynamicTest.dynamicTest("${it.input} should complain about ${it.result} negative numbers") {
-                assertThatThrownBy {
-                    Osherove(it.input).add()
-                }.hasMessageMatching("^[^-]+(-\\p{Digit}+, ){${it.result - 1}}-\\p{Digit}+[^-]*$")
-            }
+    fun cannotAddNegatives() : Collection<DynamicTest> = listOf(
+            ResultMap("-1", 1),
+            ResultMap("-11\n-1", 2),
+            ResultMap("-41\n1,-65,", 2),
+            ResultMap("1,1\n3,-4\n", 1),
+            ResultMap("-1\n-141\n2\n-98\n33\n,,\n,\n\n", 3)
+    ).map {
+        DynamicTest.dynamicTest("${it.input} should complain about ${it.result} negative numbers") {
+            assertThatThrownBy {
+                Osherove(it.input).add()
+            }.hasMessageMatching("^[^-]+(-\\p{Digit}+, ){${it.result - 1}}-\\p{Digit}+[^-]*$")
         }
     }
 }
