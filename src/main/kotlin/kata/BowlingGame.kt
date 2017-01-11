@@ -36,6 +36,5 @@ class BowlingGame {
         val bonus = rolls.slice(bonusRange).sumBy(Roll::pins)
         return scoreForFrame + bonus
     }
+    data class Roll(val pins: Int, val index: Int, val frame: Int)
 }
-
-data class Roll(val pins: Int, val index: Int, val frame: Int)
